@@ -1,0 +1,35 @@
+﻿<section>
+    <h2>Fields configuration</h2>
+    <h4>Parametrization fo dynamic fields which will be shown on the screen</h4>
+    <table cellpadding="5">
+        <tr ng-repeat="campo in CamposUser">
+            <td>
+                <input type="text" ng-model="campo.Campo" />
+            </td>
+            <td>
+                <select ng-change="changeType(campo)" ng-model="campo.Tipo">
+                    <option value="text">Text</option>
+                    <option value="number">Numeric</option>
+                    <option value="checkbox">Boolean</option>
+                    <option value="select">Select</option>
+                </select>
+            </td>
+            <td>
+                <input id="{{campo.Campo+'Required'}}" type="checkbox" ng-model="campo.Required" ng-disabled="campo.Tipo=='checkbox'" />
+                <label for="{{campo.Campo+'Required'}}" ng-disabled="campo.Tipo=='checkbox'">Required</label>
+            </td>
+            <td>
+                <button class="btn btn-danger" ng-click="delete(campo)">Remove</button>
+            </td>
+            <td>
+                <span class="glyphicon glyphicon-arrow-down icon-move" aria-hidden="true" ng-click="moveDown(campo)"></span>
+                <span class="glyphicon glyphicon-arrow-up icon-move" aria-hidden="true" ng-click="moveUp(campo)"></span>                
+            </td>
+        </tr>
+        <tr>
+            <td colspan="5">
+                <button class="btn btn-success" ng-click="add()">New field</button>
+            </td>
+        </tr>
+    </table>
+</section>
